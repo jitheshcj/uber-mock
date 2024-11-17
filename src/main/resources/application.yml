@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: app
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/uber
+    username: postgres
+    password: admin
+    driverClassName: org.postgresql.Driver
+
+  jpa:
+    showSql: true
+    hibernate:
+      ddl-auto: create-drop
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+#    defer-datasource-initialization: true
+#  sql:
+#    init:
+#      mode: always
+#    data-locations: classpath:data.sql
