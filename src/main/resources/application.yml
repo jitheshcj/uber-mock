@@ -16,6 +16,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  distance:
+    base-url: https
 #    defer-datasource-initialization: true
 #  sql:
 #    init:

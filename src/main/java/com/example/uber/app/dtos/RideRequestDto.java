@@ -6,7 +6,6 @@ import com.example.uber.app.entities.enums.RideRequestStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.locationtech.jts.geom.Point;
 
 import java.time.LocalDateTime;
 
@@ -15,8 +14,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RideRequestDto {
     private Long id;
-    private Point pickUpLocation;
-    private Point dropUpLocation;
+    private PointDto pickUpLocation;
+    private PointDto dropUpLocation;
     private LocalDateTime requestedTime;
     private Rider rider;
     private PaymentMethod paymentMethod;

@@ -31,9 +31,9 @@ public class Ride {
     @Column(columnDefinition = "Geometry(Point,4326)")
     private Point dropUpLocation;
 
-    private LocalDateTime startTime;
+    private LocalDateTime startAt;
 
-    private LocalDateTime endTime;
+    private LocalDateTime endedAt;
 
     private Double fare;
 

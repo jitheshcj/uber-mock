@@ -5,6 +5,7 @@ import com.example.uber.app.entities.enums.RideRequestStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.locationtech.jts.geom.Point;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@ToString
 public class RideRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +29,7 @@ public class RideRequest {
     private LocalDateTime requestedTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private Rider rider;
 
     @Enumerated(value = EnumType.STRING)
