@@ -3,6 +3,7 @@ package com.example.uber.app.controllers;
 import com.example.uber.app.dtos.SignUpDto;
 import com.example.uber.app.dtos.UserDto;
 import com.example.uber.app.services.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public UserDto signUp(@RequestBody SignUpDto signUpDto){
+    public UserDto signUp(@RequestBody @Valid SignUpDto signUpDto){
         return authService.signup(signUpDto);
     }
 }

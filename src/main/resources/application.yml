@@ -12,14 +12,20 @@ spring:
     showSql: true
     hibernate:
       ddl-auto: create-drop
-      dialect: org.hibernate.dialect.PostgreSQLDialect
+
     properties:
       hibernate:
+#        dialect: org.hibernate.spatial.dialect.postgis.PostgisDialect
         format_sql: true
+    defer-datasource-initialization: true
   distance:
-    base-url: https
-#    defer-datasource-initialization: true
-#  sql:
-#    init:
-#      mode: always
-#    data-locations: classpath:data.sql
+    base-url: http://router.project-osrm.org/route/v1/driving/
+
+  sql:
+    init:
+      mode: always
+    data-locations: classpath:data.sql
+
+logging:
+  level:
+    org.springframework: DEBUG

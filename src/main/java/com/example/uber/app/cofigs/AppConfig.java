@@ -9,6 +9,7 @@ import org.springframework.web.client.RestClient;
 public class AppConfig {
     @Value("${spring.distance.base-url}")
     private String BASE_URL;
+
     @Bean
     public RestClient restClient(){
         return RestClient.builder()

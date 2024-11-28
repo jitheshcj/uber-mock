@@ -15,26 +15,26 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeConflictException.class)
-    public ResponseEntity<ApiError> handleRuntimeConflictException(RuntimeConflictException runtimeConflictException){
+    public ResponseEntity<ApiResponse<?>> handleRuntimeConflictException(RuntimeConflictException runtimeConflictException){
         return
-                new ResponseEntity<>(ApiError.builder()
+                new ResponseEntity<>(new ApiResponse<>(ApiError.builder()
                         .error("Runtime Conflict Exception")
                         .httpStatus(HttpStatus.CONFLICT)
                         .subError(List.of(runtimeConflictException.getMessage()))
-                        .build(),HttpStatus.CONFLICT);
+                        .build()),HttpStatus.CONFLICT);
     }
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ApiError> handleResourceNotFoundException(ResourceNotFoundException resourceNotFoundException){
+    public ResponseEntity<ApiResponse<?>> handleResourceNotFoundException(ResourceNotFoundException resourceNotFoundException){
         return
-                new ResponseEntity<>(ApiError.builder()
+                new ResponseEntity<>(new ApiResponse<>(ApiError.builder()
                         .error("Runtime Conflict Exception")
                         .httpStatus(HttpStatus.CONFLICT)
                         .subError(List.of(resourceNotFoundException.getMessage()))
-                        .build(),HttpStatus.CONFLICT);
+                        .build()),HttpStatus.CONFLICT);
     }
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiError> handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException){
-        return new ResponseEntity<>(ApiError.builder()
+    public ResponseEntity<ApiResponse<?>> handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException){
+        return new ResponseEntity<>(new ApiResponse<>(ApiError.builder()
                 .error("Method Argument Not  valid exception")
                 .subError(methodArgumentNotValidException.getBindingResult()
                         .getAllErrors()
@@ -42,6 +42,6 @@ public class GlobalExceptionHandler {
                         .map(DefaultMessageSourceResolvable::getDefaultMessage)
                         .toList())
                 .httpStatus(HttpStatus.BAD_REQUEST)
-                .build(),HttpStatus.BAD_REQUEST);
+                .build()),HttpStatus.BAD_REQUEST);
     }
 }
