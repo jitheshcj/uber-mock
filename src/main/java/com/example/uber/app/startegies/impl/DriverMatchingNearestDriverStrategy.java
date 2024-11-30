@@ -5,7 +5,6 @@ import com.example.uber.app.entities.RideRequest;
 import com.example.uber.app.repositories.DriverRepository;
 import com.example.uber.app.startegies.DriverMatchingStrategy;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

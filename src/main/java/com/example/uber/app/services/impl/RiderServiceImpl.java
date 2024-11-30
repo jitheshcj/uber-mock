@@ -4,20 +4,20 @@ import com.example.uber.app.dtos.DriverDto;
 import com.example.uber.app.dtos.RideDto;
 import com.example.uber.app.dtos.RideRequestDto;
 import com.example.uber.app.dtos.RiderDto;
+import com.example.uber.app.entities.Driver;
 import com.example.uber.app.entities.RideRequest;
 import com.example.uber.app.entities.Rider;
 import com.example.uber.app.entities.User;
 import com.example.uber.app.entities.enums.RideRequestStatus;
 import com.example.uber.app.exceptions.ResourceNotFoundException;
-import com.example.uber.app.repositories.RideRequestRepository;
 import com.example.uber.app.repositories.RiderRepository;
+import com.example.uber.app.services.RideRequestService;
 import com.example.uber.app.services.RiderService;
 import com.example.uber.app.startegies.StrategyManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -30,10 +30,11 @@ public class RiderServiceImpl implements RiderService {
     private final ModelMapper modelMapper;
     private final StrategyManager strategyManager;
     private final RiderRepository riderRepository;
-    private final RideRequestRepository rideRequestRepository;
+//    private final RideRequestRepository rideRequestRepository;
+    private final RideRequestService rideRequestService;
 
     @Override
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional
     public RideRequestDto requestRide(RideRequestDto rideRequestDto) {
         Rider rider=getCurrentRider();
         RideRequest rideRequest=modelMapper.map(rideRequestDto,RideRequest.class);
@@ -44,8 +45,11 @@ public class RiderServiceImpl implements RiderService {
         log.info("Calculated fare for the ride is {}",fare);
         rideRequest.setFare(fare);
         rideRequest.setRider(rider);
-        RideRequest savedRequest=rideRequestRepository.save(rideRequest);
-        strategyManager.driverMatchingStrategy(rider.getRating()).findMatchingDriver(rideRequest);
+        RideRequest savedRequest=rideRequestService.saveRideRequest(rideRequest);
+        List<Driver> drivers=strategyManager.driverMatchingStrategy(rider.getRating()).findMatchingDriver(rideRequest);
+
+//        TODO: send notification to all the driver about the ride
+
         return modelMapper.map(savedRequest,RideRequestDto.class);
     }
 

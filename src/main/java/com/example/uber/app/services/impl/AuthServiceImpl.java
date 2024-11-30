@@ -5,7 +5,6 @@ import com.example.uber.app.dtos.SignUpDto;
 import com.example.uber.app.dtos.UserDto;
 import com.example.uber.app.entities.Rider;
 import com.example.uber.app.entities.User;
-import com.example.uber.app.entities.Wallet;
 import com.example.uber.app.entities.enums.Role;
 import com.example.uber.app.repositories.UserRepository;
 import com.example.uber.app.services.AuthService;
@@ -14,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.Set;
 
 @Service

@@ -1,6 +1,5 @@
 package com.example.uber.app.dtos;
 
-import com.example.uber.app.entities.Rider;
 import com.example.uber.app.entities.enums.PaymentMethod;
 import com.example.uber.app.entities.enums.RideStatus;
 import lombok.AllArgsConstructor;
@@ -15,8 +14,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class RideDto {
     private Long id;
-    private Point pickUpLocation;
-    private Point dropUpLocation;
+    private PointDto pickUpLocation;
+    private PointDto dropUpLocation;
     private LocalDateTime createdTime;
 
     private RiderDto rider;

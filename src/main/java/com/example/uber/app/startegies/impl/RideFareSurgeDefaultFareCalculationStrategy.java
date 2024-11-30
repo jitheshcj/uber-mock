@@ -4,7 +4,6 @@ import com.example.uber.app.entities.RideRequest;
 import com.example.uber.app.services.DistanceService;
 import com.example.uber.app.startegies.RideFareCalculationStrategy;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 @Service

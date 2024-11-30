@@ -1,6 +1,5 @@
 package com.example.uber.app.startegies;
 
-import com.example.uber.app.dtos.RideRequestDto;
 import com.example.uber.app.entities.RideRequest;
 
 public interface RideFareCalculationStrategy {
