@@ -15,6 +15,7 @@ import com.example.uber.app.services.RideRequestService;
 import com.example.uber.app.services.RideService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -90,8 +91,11 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public List<RideDto> getAllRides(Long rideId) {
-        return List.of();
+    public List<RideDto> getAllRides(Pageable pageable) {
+        return rideService.getAllRidersOfDriver(getCurrentDriver(),pageable)
+                .stream()
+                .map(x->modelMapper.map(x,RideDto.class))
+                .toList();
     }
 
     @Override

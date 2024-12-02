@@ -12,10 +12,10 @@ import com.example.uber.app.services.RideRequestService;
 import com.example.uber.app.services.RideService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -57,13 +57,13 @@ public class RideServiceImpl implements RideService {
     }
 
     @Override
-    public Page<Ride> getAllRidersOfRider(Long riderId, PageRequest pageRequest) {
+    public List<Ride> getAllRidersOfRider(Long riderId, Pageable pageable) {
         return null;
     }
 
     @Override
-    public Page<Ride> getAllRidersOfDriver(Long driverId, PageRequest pageRequest) {
-        return null;
+    public List<Ride> getAllRidersOfDriver(Driver driver, Pageable pageable) {
+        return rideRepository.findByDriver(driver,pageable);
     }
 
     private String generateRandomOTP(){

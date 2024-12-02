@@ -32,6 +32,17 @@ public class GlobalExceptionHandler {
                         .subError(List.of(resourceNotFoundException.getMessage()))
                         .build()),HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ApiResponse<?>> handleRuntimeException(RuntimeException runtimeException){
+        return
+                new ResponseEntity<>(new ApiResponse<>(ApiError.builder()
+                        .error("Runtime Conflict Exception")
+                        .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .subError(List.of(runtimeException.getMessage()))
+                        .build()),HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiResponse<?>> handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException){
         return new ResponseEntity<>(new ApiResponse<>(ApiError.builder()
