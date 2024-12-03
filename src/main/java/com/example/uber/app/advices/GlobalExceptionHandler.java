@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<?>> handleResourceNotFoundException(ResourceNotFoundException resourceNotFoundException){
         return
                 new ResponseEntity<>(new ApiResponse<>(ApiError.builder()
-                        .error("Runtime Conflict Exception")
+                        .error("Resource Not found Exception")
                         .httpStatus(HttpStatus.CONFLICT)
                         .subError(List.of(resourceNotFoundException.getMessage()))
                         .build()),HttpStatus.CONFLICT);
@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<?>> handleRuntimeException(RuntimeException runtimeException){
         return
                 new ResponseEntity<>(new ApiResponse<>(ApiError.builder()
-                        .error("Runtime Conflict Exception")
+                        .error("Runtime  Exception")
                         .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
                         .subError(List.of(runtimeException.getMessage()))
                         .build()),HttpStatus.INTERNAL_SERVER_ERROR);
